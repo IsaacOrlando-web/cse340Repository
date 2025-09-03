@@ -14,3 +14,7 @@ node_modules
 
 # .DS_Store is only for Mac users
 **/.DS_Store
+
+# Add the README.md file to it
+README.md
+# the readme file will NOT be included and the copy that was synced previously to your remote repo will be removed.
