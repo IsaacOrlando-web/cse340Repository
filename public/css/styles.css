@@ -4,3 +4,181 @@
 *:after {
   box-sizing: border-box;
 }
+
+body {
+  background-image: url("../images/site/checkerboard.jpg");
+  background-repeat: repeat;         /* Permite que la imagen se repita */
+  background-size: 200px 200px;      /* Ajusta el tamaño de la imagen (puedes cambiar los valores) */
+  background-position: top left;     /* Opcional: empieza desde la esquina superior izquierda */
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+#wrapper{
+  margin: 0 auto;
+  max-width: 900px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 20px;
+  border: 6px solid rgb(54, 75, 87);
+}
+
+#top-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 30px;
+}
+
+a{
+  text-decoration: none;
+  color: black;
+}
+
+.sitetitle{
+  text-decoration: none;
+  color: black;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+nav{
+  background-color: rgb(45, 45, 61);
+  padding: 3px;
+  text-align: center;
+  height: 3.5rem;
+}
+
+.nav_item{
+  color: white;
+  display: inline;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-size: 19px;
+  background-color: rgb(45, 45, 61);
+}
+
+.nav_item a{
+  color: white;
+}
+
+.car-display{
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+.car-display img{
+  width: 100%;
+  border-radius: 20px;
+}
+
+.car-description{
+  width: 200px;
+  padding: 15px;
+  background-color: rgba(157, 157, 157, 0.313);
+  border-radius: 10px;
+  position: absolute;
+  left: 3rem;
+  color: black;
+}
+
+.car-description h2{
+  margin-bottom: 0;
+  font-size: 1.5rem;
+}
+
+.car-description button{
+  background-color: rgb(45, 45, 61);
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.services-container{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.reviews-container{
+  grid-column: 2/3;
+}
+
+.reviews-container li{
+  margin-bottom: 10px;
+}
+
+.upgrades-container{
+  grid-column: 1/2;
+  grid-row: 1/2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.upgrades-container figure{
+  margin: 10px;
+  text-align: center;
+  background-color: rgb(161, 161, 161);
+  color: white;
+  border-radius: 20px;
+}
+
+.upgrades-container h3{
+  grid-column: 1/3;
+  text-align: center;
+}
+
+@media only screen and (max-width: 600px) {
+  h1{
+    font-size: 1.5rem !important;
+  }
+
+  body {
+    background-color: white !important;
+    background-image: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  #wrapper {
+    width: 100vw !important;
+    min-height: 100vh !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+    border: none !important;
+    box-sizing: border-box !important;
+    background-color: white !important;
+  }
+  
+  .services-container {
+    grid-template-columns: 1fr !important;
+  }
+  .reviews-container,
+  .upgrades-container {
+    grid-column: auto !important;
+    grid-row: auto !important;
+  }
+
+  .nav_item {
+    margin-right: 10px !important;
+    padding: 10px 0 !important;
+    font-size: 17px !important;
+  }
+
+  .car-description {
+    width: 50% !important;
+    left: 10px !important;
+    background-color: rgba(157, 157, 157, 0.427) !important;
+    margin: 10px !important;
+    color: black !important;
+
+    font-size: 10px !important;
+  }
+
+  .car-description h3 {
+    font-size: 1rem !important;
+  }
+}
