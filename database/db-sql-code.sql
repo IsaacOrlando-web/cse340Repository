@@ -1,6 +1,6 @@
 CREATE TYPE public.account_type AS ENUM
     ('Client', 'Employee', 'Admin');
- 
+
 ALTER TYPE public.account_type
     OWNER TO admin;
 
@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS public.inventory
 	inv_price numeric(9,0) NOT NULL,
 	inv_miles integer NOT NULL,
 	inv_color character varying NOT NULL,
-	classiffication_id integer NOT NULL,
+	classification_id integer NOT NULL,
 	CONSTRAINT inventory_pkey PRIMARY KEY (inv_id)
 );
 
@@ -231,3 +231,21 @@ VALUES   (
     'White',
     5
   );
+
+
+-- SQL step 5.4: Modify the "GM Hummer" record to read "a huge interior" rather than "small interiors" using a single query. Explore the PostgreSQL Replace function Do NOT retype the entire description as part of the query.. It needs to be part of an Update query as shown in the code examples of this SQL Reading.
+SELECT REPLACE 
+	('Do you have 6 kids and like to go offroading? The Hummer gives you the small interiors with an engine to get you out of any muddy or rocky situation.', 'small interiors', 'a huge interior');
+
+
+-- SQL step 5.5: Use an inner join to select the make and model fields from the inventory table and the classification name field from the classification table for inventory items that belong to the "Sport" category.
+SELECT inv_make, inv_model, classification_name FROM "inventory" 
+	JOIN classification ON classification.classification_id = "inventory".classification_id;
+
+-- SQL step 5.6: Update all records in the inventory table to add "/vehicles" to the middle of the file path in the inv_image and inv_thumbnail columns using a single query. 
+SELECT 
+    inv_image, 
+    REPLACE(inv_image, '/images/', '/images/vehicles/') as new_inv_image,
+    inv_thumbnail,
+    REPLACE(inv_thumbnail, '/images/', '/images/vehicles/') as new_inv_thumbnail
+FROM inventory;
