@@ -48,7 +48,7 @@ nav{
   height: 3.5rem;
 }
 
-.nav_item{
+nav ul li{
   color: white;
   display: inline;
   padding-left: 20px;
@@ -57,7 +57,7 @@ nav{
   background-color: rgb(45, 45, 61);
 }
 
-.nav_item a{
+nav li a{
   color: white;
 }
 

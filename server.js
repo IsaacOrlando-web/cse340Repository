@@ -10,6 +10,8 @@ const expressLayouts = require("express-ejs-layouts") //we tell the application 
 const env = require("dotenv").config()
 const app = express()
 const static = require("./routes/static")
+const baseController = require("./controllers/baseController")
+const inventoryRoute = require("./routes/inventoryRoute")
 
 
 /* ***********************
@@ -22,9 +24,9 @@ app.set("view engine", "ejs") //we declare that ejs will be the view engine for 
 
 
 //Index route
-app.get('', (req, res) => {
-  res.render("index", {title: "Home"})
-})
+app.get('', baseController.buildHome)
+// Inventory routes
+app.use("/inv", inventoryRoute)
 
 
 /* ***********************
