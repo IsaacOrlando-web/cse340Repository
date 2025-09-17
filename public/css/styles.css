@@ -130,6 +130,18 @@ nav li a{
   text-align: center;
 }
 
+#inv-display{
+  display: flex;
+  flex-direction: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px;
+}
+
+#inv-display li{
+  list-style: none;
+}
+
 @media only screen and (max-width: 600px) {
   h1{
     font-size: 1.5rem !important;

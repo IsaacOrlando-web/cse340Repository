@@ -243,9 +243,4 @@ SELECT inv_make, inv_model, classification_name FROM "inventory"
 	JOIN classification ON classification.classification_id = "inventory".classification_id;
 
 -- SQL step 5.6: Update all records in the inventory table to add "/vehicles" to the middle of the file path in the inv_image and inv_thumbnail columns using a single query. 
-SELECT 
-    inv_image, 
-    REPLACE(inv_image, '/images/', '/images/vehicles/') as new_inv_image,
-    inv_thumbnail,
-    REPLACE(inv_thumbnail, '/images/', '/images/vehicles/') as new_inv_thumbnail
-FROM inventory;
+UPDATE inventory SET inv_image=replace(inv_image,'/images','/images/vehicles'), inv_thumbnail=replace(inv_thumbnail, '/images', '/images/vehicles');
