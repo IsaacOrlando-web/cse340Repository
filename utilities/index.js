@@ -6,7 +6,7 @@ const Util = {}
  ************************** */
 Util.getNav = async function (req, res, next) {
     let data = await invModel.getClassifications(1)
-    console.log(data);
+    console.log("Ejecutando getNav: ", data.rows);
     let list = "<ul>"
     list += '<li><a href="/" title="Home page">Home</a></li>'
     data.rows.forEach((row) => {
@@ -34,6 +34,7 @@ module.exports = Util
 * ************************************ */
 Util.buildClassificationGrid = async function(data){
     let grid
+    console.log("Ejecutanto buildClassificationGrid: ", data)
     if(data.length > 0){
         grid = '<ul id="inv-display">'
         data.forEach(vehicle => { 
@@ -60,6 +61,40 @@ Util.buildClassificationGrid = async function(data){
         grid += '<p class="notice">Sorry, no matching vehicles could be found.</p>'
     }
     return grid
+}
+
+Util.buildSingleVehicleDisplay = async (vehicle) => {
+    console.log("Ejecutando buildSingleVehicleDisplay()/Datos del vehiculo: ", vehicle)
+    let svd = '<section id="vehicle-display">'
+    svd += "<div>"
+    svd += '<section class="imagePrice">'
+    svd +=
+        "<img src='" +
+        vehicle.inv_image +
+        "' alt='Image of " +
+        vehicle.inv_make +
+        " " +
+        vehicle.inv_model +
+        " on cse motors' id='mainImage'>"
+    svd += "</section>"
+    svd += '<section class="vehicleDetail">'
+    svd += "<h3> " + vehicle.inv_make + " " + vehicle.inv_model + " Details</h3>"
+    svd += '<ul id="vehicle-details">'
+    svd +=
+        "<li><h4>Price: $" +
+        new Intl.NumberFormat("en-US").format(vehicle.inv_price) +
+        "</h4></li>"
+    svd += "<li><h4>Description:</h4> " + vehicle.inv_description + "</li>"
+    svd += "<li><h4>Color:</h4> " + vehicle.inv_color + "</li>"
+    svd +=
+        "<li><h4>Miles:</h4> " +
+        new Intl.NumberFormat("en-US").format(vehicle.inv_miles) +
+        "</li>"
+    svd += "</ul>"
+    svd += "</section>"
+    svd += "</div>"
+    svd += "</section>"
+    return svd
 }
 
 /* ****************************************
