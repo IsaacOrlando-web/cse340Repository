@@ -8,9 +8,9 @@ Util.getNav = async function (req, res, next) {
     let data = await invModel.getClassifications(1)
     console.log("Ejecutando getNav: ", data.rows);
     let list = "<ul>"
-    list += '<li><a href="/" title="Home page">Home</a></li>'
+    list += '<li class="nav_item"><a href="/" title="Home page">Home</a></li>'
     data.rows.forEach((row) => {
-        list += "<li>"
+        list += '<li class="nav_item">'
         list +=
         '<a href="/inv/type/' +
         row.classification_id +
@@ -66,8 +66,9 @@ Util.buildClassificationGrid = async function(data){
 Util.buildSingleVehicleDisplay = async (vehicle) => {
     console.log("Ejecutando buildSingleVehicleDisplay()/Datos del vehiculo: ", vehicle)
     let svd = '<section id="vehicle-display">'
+    svd += `<h2>${vehicle.inv_make} ${vehicle.inv_model} Details</h2>` // Heading principal
     svd += "<div>"
-    svd += '<section class="imagePrice">'
+    svd += '<div class="imagePrice">' // Cambiado a div
     svd +=
         "<img src='" +
         vehicle.inv_image +
@@ -76,8 +77,8 @@ Util.buildSingleVehicleDisplay = async (vehicle) => {
         " " +
         vehicle.inv_model +
         " on cse motors' id='mainImage'>"
-    svd += "</section>"
-    svd += '<section class="vehicleDetail">'
+    svd += "</div>"
+    svd += '<div class="vehicleDetail">' // Cambiado a div
     svd += "<h3> " + vehicle.inv_make + " " + vehicle.inv_model + " Details</h3>"
     svd += '<ul id="vehicle-details">'
     svd +=
@@ -91,7 +92,7 @@ Util.buildSingleVehicleDisplay = async (vehicle) => {
         new Intl.NumberFormat("en-US").format(vehicle.inv_miles) +
         "</li>"
     svd += "</ul>"
-    svd += "</section>"
+    svd += "</div>"
     svd += "</div>"
     svd += "</section>"
     return svd
