@@ -15,7 +15,11 @@ const app = express()
 const static = require("./routes/static")
 const baseController = require("./controllers/baseController")
 const inventoryRoute = require("./routes/inventoryRoute")
+const accountController = require("./controllers/accountController")
+const accountRoute = require("./routes/accountRoute")
 const utilities = require("./utilities/")
+const router = require("./routes/static")
+const bodyParser = require("body-parser")
 
 
 /* ***********************
@@ -43,11 +47,12 @@ app.use((req, res, next) => {
   next()
 })
 
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+
 //Index route
 app.get('', baseController.buildHome)
-app.get("/", utilities.handleErrors(baseController.buildHome))
 // Inventory routes
-app.use("/inv", inventoryRoute)
 
 
 
@@ -56,6 +61,12 @@ app.use("/inv", inventoryRoute)
  *************************/
 app.use(static) // meaning that the application itself will use this resource.
 // File Not Found Route - must be last route in list
+app.get("/", utilities.handleErrors(baseController.buildHome))
+app.use("/inv", inventoryRoute)
+app.use("/account", accountRoute)
+// Route to build login view
+router.get("/login", utilities.handleErrors(accountController.buildLogin))
+
 app.use(async (req, res, next) => {
   next({status: 404, message: 'Sorry, we appear to have lost that page.'})
 })

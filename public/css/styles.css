@@ -285,6 +285,166 @@ footer .copyright {
   white-space: nowrap;
 }
 
+input:invalid {
+  background-color: ivory;
+  border: none;
+  outline: 2px solid red;
+  border-radius: 5px;
+}
+
+.iwords{
+  color: #2d2d3d;
+}
+
+/******* LOGIN FORM STYLES ***************/
+
+/******* LOGIN & REGISTER FORM STYLES ***************/
+
+#loginContainer,
+#registerContainer {
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #f8f9fa;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(54, 75, 87, 0.12);
+  border: 2px solid #e0e0e0;
+}
+
+#loginContainer h2,
+#registerContainer h2 {
+  text-align: center;
+  color: #2d2d3d;
+  margin-top: 0;
+  margin-bottom: 25px;
+  font-size: 1.8rem;
+  border-bottom: 2px solid #364b57;
+  padding-bottom: 10px;
+}
+
+#loginForm fieldset,
+#registerForm fieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+#loginForm label,
+#registerForm label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #2d2d3d;
+}
+
+#loginForm input[type="email"],
+#loginForm input[type="password"],
+#loginForm input[type="text"],
+#registerForm input[type="email"],
+#registerForm input[type="password"],
+#registerForm input[type="text"] {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 20px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+  box-sizing: border-box;
+}
+
+#loginForm input[type="email"]:focus,
+#loginForm input[type="password"]:focus,
+#loginForm input[type="text"]:focus,
+#registerForm input[type="email"]:focus,
+#registerForm input[type="password"]:focus,
+#registerForm input[type="text"]:focus {
+  border-color: #364b57;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(54, 75, 87, 0.2);
+}
+
+#loginForm div,
+#registerForm div {
+  margin-bottom: 15px;
+  font-size: 0.9rem;
+  color: #ffffff;
+  line-height: 1.4;
+}
+
+#pswdBtn {
+  display: inline-block;
+  padding: 8px 15px;
+  background-color: #364b57;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+  transition: background-color 0.3s;
+}
+
+#pswdBtn:hover {
+  background-color: #2d2d3d;
+}
+
+#loginForm button,
+#registerForm button {
+  width: 100%;
+  padding: 14px;
+  background-color: #2d2d3d;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 10px;
+}
+
+#loginForm button:hover,
+#registerForm button:hover {
+  background-color: #364b57;
+}
+
+#loginContainer p,
+#registerContainer p {
+  text-align: center;
+  margin-top: 25px;
+  color: #555;
+}
+
+#loginContainer a,
+#registerContainer a {
+  color: #1a7f37;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+#loginContainer a:hover,
+#registerContainer a:hover {
+  text-decoration: underline;
+}
+
+/* Estilos específicos para el formulario de registro */
+#registerContainer p:first-child {
+  text-align: left;
+  margin-top: 0;
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: #e9f7ef;
+  border-left: 4px solid #1a7f37;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+#registerForm div i {
+  font-style: italic;
+  color: #666;
+}
+
 @media only screen and (max-width: 700px) {
   #vehicle-display > div {
     flex-direction: column;
@@ -302,6 +462,15 @@ footer .copyright {
 }
 
 @media only screen and (max-width: 600px) {
+
+  #loginContainer,
+  #registerContainer {
+    margin: 20px;
+    padding: 20px;
+    box-shadow: none;
+    border: 1px solid #e0e0e0;
+  }
+
   h1{
     font-size: 1.5rem !important;
   }

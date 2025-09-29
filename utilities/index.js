@@ -6,7 +6,6 @@ const Util = {}
  ************************** */
 Util.getNav = async function (req, res, next) {
     let data = await invModel.getClassifications(1)
-    console.log("Ejecutando getNav: ", data.rows);
     let list = "<ul>"
     list += '<li class="nav_item"><a href="/" title="Home page">Home</a></li>'
     data.rows.forEach((row) => {
@@ -34,7 +33,6 @@ module.exports = Util
 * ************************************ */
 Util.buildClassificationGrid = async function(data){
     let grid
-    console.log("Ejecutanto buildClassificationGrid: ", data)
     if(data.length > 0){
         grid = '<ul id="inv-display">'
         data.forEach(vehicle => { 
@@ -64,7 +62,6 @@ Util.buildClassificationGrid = async function(data){
 }
 
 Util.buildSingleVehicleDisplay = async (vehicle) => {
-    console.log("Ejecutando buildSingleVehicleDisplay()/Datos del vehiculo: ", vehicle)
     let svd = '<section id="vehicle-display">'
     svd += `<h2>${vehicle.inv_make} ${vehicle.inv_model} Details</h2>` // Heading principal
     svd += "<div>"
