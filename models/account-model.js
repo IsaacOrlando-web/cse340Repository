@@ -12,4 +12,37 @@ async function registerAccount(account_firstname, account_lastname, account_emai
     }
 }
 
-module.exports = { registerAccount }
+/* **********************
+ *   Check for existing email
+ * ********************* */
+async function checkExistingEmail(account_email){
+    try {
+        const sql = "SELECT * FROM account WHERE account_email = $1"
+        const email = await pool.query(sql, [account_email])
+        return email.rowCount
+    } catch (error) {
+        return error.message
+    }
+}
+
+/* **********************
+ *   Check login credentials
+ * ********************* */
+async function checkLogin(account_email, account_password) {
+    try {
+        const sql = "SELECT account_id, account_firstname, account_type, account_password FROM account WHERE account_email = $1"
+        const data = await pool.query(sql, [account_email])
+    
+    if (data.rowCount === 1) {
+        const isPasswordValid = await bcrypt.compare(account_password, data.rows[0].account_password)
+        if (isPasswordValid) {
+            return data.rows[0] // Return user data without password
+        }
+    }
+    return null // Return null if credentials are invalid
+    } catch (error) {
+        return error.message
+    }
+}
+
+module.exports = { registerAccount, checkExistingEmail, checkLogin }
