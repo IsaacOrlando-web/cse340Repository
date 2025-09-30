@@ -299,7 +299,7 @@ input:invalid {
 /******* LOGIN FORM STYLES ***************/
 
 /******* LOGIN & REGISTER FORM STYLES ***************/
-
+/* Estilos base para contenedores de formularios */
 #loginContainer,
 #registerContainer {
   max-width: 500px;
@@ -368,7 +368,7 @@ input:invalid {
 #registerForm div {
   margin-bottom: 15px;
   font-size: 0.9rem;
-  color: #ffffff;
+  color: #666;
   line-height: 1.4;
 }
 
@@ -445,6 +445,96 @@ input:invalid {
   color: #666;
 }
 
+/* ESTILOS PARA LOS NUEVOS FORMULARIOS QUE AGREGARÁS */
+/* Formulario de clasificación */
+#registerContainer .formSpread fieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+#registerContainer .formSpread label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #2d2d3d;
+}
+
+#registerContainer .formSpread input[type="text"], #invMake, #invModel, #inv_image, #invPrice, #invYear, #invMiles, #invColor {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 20px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+  box-sizing: border-box;
+}
+
+#registerContainer .formSpread input[type="text"]:focus {
+  border-color: #364b57;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(54, 75, 87, 0.2);
+}
+
+#registerContainer .formSpread button, #addVehicleBtn {
+  width: 100%;
+  padding: 14px;
+  background-color: #2d2d3d;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 10px;
+}
+
+#registerContainer .formSpread button:hover {
+  background-color: #364b57;
+}
+
+/* Formulario de inventario - estilos adicionales */
+#registerContainer textarea {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 20px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+  box-sizing: border-box;
+  min-height: 100px;
+  resize: vertical;
+  font-family: inherit;
+}
+
+#registerContainer textarea:focus {
+  border-color: #364b57;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(54, 75, 87, 0.2);
+}
+
+#registerContainer select {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 20px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+  box-sizing: border-box;
+  background-color: white;
+}
+
+#registerContainer select:focus {
+  border-color: #364b57;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(54, 75, 87, 0.2);
+}
+
+/* Media queries responsivas */
 @media only screen and (max-width: 700px) {
   #vehicle-display > div {
     flex-direction: column;
@@ -462,13 +552,24 @@ input:invalid {
 }
 
 @media only screen and (max-width: 600px) {
-
   #loginContainer,
   #registerContainer {
     margin: 20px;
     padding: 20px;
     box-shadow: none;
     border: 1px solid #e0e0e0;
+  }
+  
+  #loginContainer h2,
+  #registerContainer h2 {
+    font-size: 1.5rem;
+  }
+  
+  #loginForm button,
+  #registerForm button,
+  #registerContainer .formSpread button {
+    padding: 12px;
+    font-size: 1rem;
   }
 
   h1{
