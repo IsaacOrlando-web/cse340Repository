@@ -10,13 +10,11 @@
   <form id="loginForm" action="/account/login" method="post">
     <fieldset>
       <label for="email">Email Address:</label>
-      <input type="email" name="account_email" id="email" required 
-             value="<%= typeof locals.account_email !== 'undefined' ? locals.account_email : '' %>">
+      <input type="email" name="account_email" id="email" required value="<%= typeof locals.account_email !== 'undefined' ? locals.account_email : '' %>">
       
       <label for="password">Password</label>
       <input type="password" name="account_password" id="password" required>
       
-      <!-- Mostrar errores de validación -->
       <% if (typeof errors !== 'undefined' && errors.length > 0) { %>
         <div class="errors">
           <ul>

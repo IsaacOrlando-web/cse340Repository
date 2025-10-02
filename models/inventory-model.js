@@ -1,3 +1,4 @@
+const { query } = require("express-validator")
 const pool = require("../database")
 
 /* ***************************
@@ -93,4 +94,53 @@ async function addInventory(
   }
 }
 
-module.exports = {getClassifications, getInventoryByClassificationId, getAccounts, getInventoryById, addClassification, addInventory };
+//the function will carry out a deletion of the inventory item.
+async function deleteInventory(inv_id) {
+    try {
+        const data = await pool.query('DELETE FROM inventory WHERE inv_id = $1', [inv_id]);
+        return data;
+    } catch (error) {
+        console.error("Delte error: " + error);
+    }
+}
+
+/* ***************************
+ *  Update Inventory Data
+ * ************************** */
+async function updateInventory(
+  inv_id,
+  inv_make,
+  inv_model,
+  inv_description,
+  inv_image,
+  inv_thumbnail,
+  inv_price,
+  inv_year,
+  inv_miles,
+  inv_color,
+  classification_id
+) {
+  try {
+    const sql =
+      "UPDATE public.inventory SET inv_make = $1, inv_model = $2, inv_description = $3, inv_image = $4, inv_thumbnail = $5, inv_price = $6, inv_year = $7, inv_miles = $8, inv_color = $9, classification_id = $10 WHERE inv_id = $11 RETURNING *"
+      console.log("Ejectudanto el query: ", sql)
+    const data = await pool.query(sql, [
+      inv_make,
+      inv_model,
+      inv_description,
+      inv_image,
+      inv_thumbnail,
+      inv_price,
+      inv_year,
+      inv_miles,
+      inv_color,
+      classification_id,
+      inv_id
+    ])
+    return data.rows[0]
+  } catch (error) {
+    console.error("model error: " + error)
+  }
+}
+
+module.exports = {getClassifications, getInventoryByClassificationId, getAccounts, getInventoryById, addClassification, addInventory, deleteInventory, updateInventory };

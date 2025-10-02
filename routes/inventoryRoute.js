@@ -7,10 +7,16 @@ const invChecks = require("../utilities/inventory-validation")
 
 // Route to build inventory by classification view
 
+
+router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
 // Route to build inventory by classification view
 router.get("/type/:classificationId", invController.buildByClassificationId);
-router.get("/detail/:id", 
-utilities.handleErrors(invController.buildDetail))
+router.get("/detail/:id", utilities.handleErrors(invController.buildDetail))
+router.get("/edit/:inv_id", utilities.handleErrors(invController.editInventory))
+router.post("/update/", invController.updateInventory)
+
+router.get("/delete/:id", 
+utilities.handleErrors(invController.buildDeleteConfirmation))
 
 router.get(
     "/broken",
@@ -51,6 +57,30 @@ router.post(
   invChecks.newInventoryRules(),
   invChecks.checkInventoryData,
   utilities.handleErrors(invController.addInventory)
+)
+
+router.post(
+  "/addInventory",
+  //utilities.checkAccountType,
+  invChecks.newInventoryRules(),
+  invChecks.checkInventoryData,
+  utilities.handleErrors(invController.addInventory)
+)
+
+router.post(
+  "/delete",
+  //utilities.checkAccountType,
+  //invChecks.newInventoryRules(),
+  //invChecks.checkInventoryData,
+  utilities.handleErrors(invController.deleteItem)
+)
+
+router.post(
+  "/update",
+  //utilities.checkAccountType,
+  invChecks.newInventoryRules(),
+  invChecks.checkUpdateData,
+  utilities.handleErrors(invController.updateInventory)
 )
 
 module.exports = router;

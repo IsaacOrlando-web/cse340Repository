@@ -1,16 +1,15 @@
 <%# Unit 4, Select Inv Item activity %>
-<% if (title) {%>
+<% if (title) { %>
 <h1><%= title %></h1>
-<%} else {res.redirect('/')} %>
+<% } %>
 
 <%- messages() %>
-
 
 <% if (errors) { %>
 <ul class="message warning">
     <% errors.array().forEach(error => { %>
     <li><%= error.msg %></li>
-    <%  }) %>
+    <% }) %>
 </ul>
 <% } %>
 
@@ -18,3 +17,31 @@
     <li><a href="/inv/newClassification/" title="Click to add a new vehicle classification">Add New Classification</a></li>
     <li><a href="/inv/newVehicle/" title="Click to add a new vehicle">Add New Vehicle</a></li>
 </ul>
+
+<h2>Manage Inventory</h2>
+<p>Select a classification from the list to see the items belonging to the classification.</p>
+<%- classificationSelect %>
+<table id="inventoryDisplay"></table>
+<noscript>JavaScript must be enabled to use this page.</noscript>
+
+<!-- SOLO UNA versión del script -->
+<script src="/js/inventory.js"></script>
+
+<!-- Script de debug -->
+<script>
+console.log("🟢 EJS script loaded");
+console.log("Current URL:", window.location.href);
+console.log("classificationList element:", document.getElementById('classificationList'));
+
+// Verificar si el archivo JS se cargó
+window.addEventListener('load', function() {
+    console.log("🟢 Window loaded");
+    setTimeout(function() {
+        if (typeof buildInventoryList === 'function') {
+            console.log("✅ inventory.js functions are available");
+        } else {
+            console.log("❌ inventory.js functions NOT available");
+        }
+    }, 100);
+});
+</script>

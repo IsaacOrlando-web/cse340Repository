@@ -20,7 +20,8 @@ const accountRoute = require("./routes/accountRoute")
 const utilities = require("./utilities/")
 const router = require("./routes/static")
 const bodyParser = require("body-parser")
-
+const cookieParser = require("cookie-parser")
+const pool = require('./database')
 
 /* ***********************
  * View Engine and Templates
@@ -34,12 +35,18 @@ app.set("view engine", "ejs") //we declare that ejs will be the view engine for 
  *************************/
 // Session middleware
 app.use(session({
-  secret: process.env.SESSION_SECRET || 'your-secret-key',
-  resave: false,
+  store: new(require('connect-pg-simple')(session))({
+    createTableIfMissing: true,
+    pool,
+  }),
+  secret: process.env.SESSION_SECRET,
+  resave: true,
   saveUninitialized: true,
-  cookie: { secure: false } // set to true if using HTTPS
+  name: "sessionId",
 }))
 
+//For the cookieParser
+app.use(cookieParser())
 // Flash middleware
 app.use(flash())
 app.use((req, res, next) => {
@@ -49,6 +56,7 @@ app.use((req, res, next) => {
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+app.use(utilities.checkJWTToken)
 
 //Index route
 app.get('', baseController.buildHome)
@@ -61,7 +69,13 @@ app.get('', baseController.buildHome)
  *************************/
 app.use(static) // meaning that the application itself will use this resource.
 // File Not Found Route - must be last route in list
-app.get("/", utilities.handleErrors(baseController.buildHome))
+app.get("/", utilities.handleErrors(async (req, res) => {
+  console.log('Cookies: ', req.cookies);
+  console.log('Signed Cookies: ', req.signedCookies);
+  
+  // Llamar al controlador original
+  return await baseController.buildHome(req, res);
+}));
 app.use("/inv", inventoryRoute)
 app.use("/account", accountRoute)
 // Route to build login view
