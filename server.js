@@ -48,9 +48,9 @@ app.use(session({
 //For the cookieParser
 app.use(cookieParser())
 // Flash middleware
-app.use(flash())
-app.use((req, res, next) => {
-  res.locals.messages = messages(req, res)
+app.use(require("connect-flash")())
+app.use(function (req, res, next) {
+  res.locals.messages = require("express-messages")(req, res)
   next()
 })
 
@@ -78,8 +78,6 @@ app.get("/", utilities.handleErrors(async (req, res) => {
 }));
 app.use("/inv", inventoryRoute)
 app.use("/account", accountRoute)
-// Route to build login view
-router.get("/login", utilities.handleErrors(accountController.buildLogin))
 
 app.use(async (req, res, next) => {
   next({status: 404, message: 'Sorry, we appear to have lost that page.'})

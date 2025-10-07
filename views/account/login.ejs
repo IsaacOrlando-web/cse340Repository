@@ -15,18 +15,6 @@
       <label for="password">Password</label>
       <input type="password" name="account_password" id="password" required>
       
-      <% if (typeof errors !== 'undefined' && errors.length > 0) { %>
-        <div class="errors">
-          <ul>
-            <% errors.forEach(error => { %>
-              <% if (error.path === 'account_email' || error.path === 'account_password') { %>
-                <li><%= error.msg %></li>
-              <% } %>
-            <% }) %>
-          </ul>
-        </div>
-      <% } %>
-      
       <div id="pswdBtn">Show Password</div>
       <button type="submit">Login</button>
     </fieldset>

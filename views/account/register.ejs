@@ -3,13 +3,19 @@
 <h1><%= title %></h1>
 <% } else { res.redirect('/') } %>
 
-<%- messages() %>
+<!-- MOSTRAR FLASH MESSAGES -->
+<% if (locals.messages && locals.messages.notice) { %>
+    <div class="flash-message">
+        <%= messages.notice %>
+    </div>
+<% } %>
 
-<% if (errors) { %>
+<!-- MOSTRAR ERRORES DE VALIDACIÓN (solo una vez) -->
+<% if (errors && errors.array().length > 0) { %>
 <ul class="message warning">
   <% errors.array().forEach(error => { %>
   <li><%= error.msg %></li>
-  <%  }) %>
+  <% }) %>
 </ul>
 <% } %>
 
@@ -23,6 +29,12 @@
             <input type="text" name="account_lastname" id="lastname" required value="<%= locals.account_lastname %>">
             <label for="email">Email Address:</label>
             <input type="email" name="account_email" id="email" required value="<%= locals.account_email %>">
+            <label for="type">Account Type:</label>
+            <select name="account_type" id="account_type">
+                <option value="Employee" selected>Employee</option>
+                <option value="Admin">Admin</option>
+                <option value="Client">Client</option>
+            </select>
             <label for="password">Password:</label>
             <input type="password" name="account_password" id="pword" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
             <div><i>Passwords must be minimum of 12 characters and include 1 capital letter, 1 number and 1 special character.</i></div>
@@ -32,11 +44,3 @@
     </form>
 </div>
 <script src="/js/script.js"></script>
-
-<% if (errors) { %>
-    <ul class="notice">
-<% errors.array().forEach(error => { %>
-<li><%= error.msg %></li>
-<%  }) %>
-</ul>
-<% } %>

@@ -1,0 +1,52 @@
+<!-- MOSTRAR ERRORES DE VALIDACIÓN (solo una vez) -->
+<%- messages() %>
+
+<% if (errors && errors.array().length > 0) { %>
+<ul class="message warning">
+  <% errors.array().forEach(error => { %>
+  <li><%= error.msg %></li>
+  <% }) %>
+</ul>
+<% } %>
+
+<div class="account-update-form">
+  <h2>Update Account Information</h2>
+  
+  <form action="/account/update" method="post">
+    <div class="form-group">
+      <input type="hidden" name="account_id" value="<%= accountData.account_id %>">
+      <label for="account_firstname">First Name:</label>
+      <input type="text" id="account_firstname" name="account_firstname" value="<%= accountData.account_firstname %>" required>
+    </div>
+    
+    <div class="form-group">
+      <label for="account_lastname">Last Name:</label>
+      <input type="text" id="account_lastname" name="account_lastname" value="<%=accountData.account_lastname %>" required>
+    </div>
+    
+    <div class="form-group">
+      <label for="account_email">Email:</label>
+      <input type="email" id="account_email" name="account_email" value="<%=accountData.account_email%>" required>
+    </div>
+    
+    <button type="submit" class="submit-button">Update Account Information</button>
+  </form>
+</div>
+
+<div class="account-update-form">
+  <h2>Update Password</h2>
+ <form method="post" action="/account/password">
+  <input type="hidden" name="account_id" value="<%= accountData.account_id %>">
+   <span>Passwords must be at least 12 characters and contain at least 1 number, 1 capital letter and 1 special character</span>
+   <p class="red">*note your original password will be changed.</p>
+   <label for="password">Password</label>
+   <input type="password" name="account_password" id="password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$" required>
+   <div><i>Passwords must be minimum of 12 characters and include 1 capital letter, 1 number and 1 special character.</i></div>
+   <div id="pswdBtn">Show Password</div>
+   <input type="hidden" name="account_id" value="<%= locals.account_id %>">
+   <input type="submit" value="Change Password">
+ </form>
+</div>
+
+
+<script src="/js/script.js"></script>

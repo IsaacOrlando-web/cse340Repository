@@ -534,6 +534,345 @@ input:invalid {
   box-shadow: 0 0 0 2px rgba(54, 75, 87, 0.2);
 }
 
+/******* HEADER STYLES ***************/
+#top-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 30px;
+  background: linear-gradient(135deg, #2d2d3d 0%, #364b57 100%);
+  border-radius: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(45, 45, 61, 0.15);
+}
+
+.siteName .sitetitle {
+  text-decoration: none;
+  color: white;
+  font-size: 28px;
+  font-weight: bold;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  letter-spacing: 0.5px;
+  transition: color 0.3s ease;
+}
+
+.siteName .sitetitle:hover {
+  color: #1a7f37;
+}
+
+#tools {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+#tools a {
+  text-decoration: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+/* Estilo para el enlace "Welcome [Nombre]" */
+.welcome-link {
+  background: linear-gradient(135deg, #1a7f37 0%, #2ecc71 100%);
+  color: white !important;
+  box-shadow: 0 2px 8px rgba(26, 127, 55, 0.3);
+}
+
+.welcome-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(26, 127, 55, 0.4);
+  background: linear-gradient(135deg, #2ecc71 0%, #1a7f37 100%);
+}
+
+/* Estilo para el enlace "Logout" */
+#tools a[href="/account/logout"] {
+  background: rgba(255, 255, 255, 0.1);
+  color: white !important;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+#tools a[href="/account/logout"]:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-1px);
+}
+
+/* Estilo para "My Account" cuando NO está logueado */
+#tools a[href="/account/login"] {
+  background: linear-gradient(135deg, #364b57 0%, #2d2d3d 100%);
+  color: white !important;
+  box-shadow: 0 2px 8px rgba(54, 75, 87, 0.3);
+}
+
+#tools a[href="/account/login"]:hover {
+  background: linear-gradient(135deg, #2d2d3d 0%, #364b57 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(54, 75, 87, 0.4);
+}
+
+/* Efectos hover comunes para todos los enlaces */
+#tools a:hover {
+  text-decoration: none;
+}
+
+/******* RESPONSIVE HEADER STYLES ***************/
+@media only screen and (max-width: 600px) {
+  #top-header {
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px 20px;
+    text-align: center;
+  }
+  
+  .siteName .sitetitle {
+    font-size: 24px;
+  }
+  
+  #tools {
+    gap: 12px;
+  }
+  
+  #tools a {
+    padding: 8px 14px;
+    font-size: 14px;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  #tools {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+  }
+  
+  #tools a {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/******* CLASSIFICATION SELECTOR STYLES ***************/
+.classification-container {
+  margin: 30px 0;
+  padding: 25px;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border-radius: 16px;
+  border: 2px solid #e0e0e0;
+  box-shadow: 0 4px 12px rgba(54, 75, 87, 0.08);
+}
+
+.classification-container label {
+  display: block;
+  margin-bottom: 12px;
+  font-weight: 600;
+  color: #2d2d3d;
+  font-size: 1.1rem;
+}
+
+#classificationList {
+  width: 100%;
+  max-width: 400px;
+  padding: 14px 16px;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  background: white;
+  color: #2d2d3d;
+  transition: all 0.3s ease;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%232d2d3d' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  background-size: 16px;
+}
+
+#classificationList:focus {
+  outline: none;
+  border-color: #364b57;
+  box-shadow: 0 0 0 3px rgba(54, 75, 87, 0.2);
+  background-color: #f8f9fa;
+}
+
+#classificationList:hover {
+  border-color: #364b57;
+}
+
+#classificationList option {
+  padding: 12px;
+  font-size: 1rem;
+}
+
+#classificationList option:first-child {
+  color: #666;
+  font-style: italic;
+}
+
+/******* INVENTORY TABLE STYLES ***************/
+.table-container {
+  margin: 30px 0;
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(54, 75, 87, 0.12);
+  border: 1px solid #e0e0e0;
+}
+
+#inventoryDisplay {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+#inventoryDisplay thead {
+  background: linear-gradient(135deg, #2d2d3d 0%, #364b57 100%);
+}
+
+#inventoryDisplay th {
+  padding: 18px 16px;
+  text-align: left;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+  border: none;
+}
+
+#inventoryDisplay tbody tr {
+  transition: all 0.3s ease;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+#inventoryDisplay tbody tr:hover {
+  background-color: #f8f9fa;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(54, 75, 87, 0.1);
+}
+
+#inventoryDisplay td {
+  padding: 16px;
+  color: #2d2d3d;
+  font-size: 0.95rem;
+  border: none;
+}
+
+#inventoryDisplay td:first-child {
+  font-weight: 600;
+  color: #364b57;
+}
+
+/* Estado vacío de la tabla */
+#inventoryDisplay:empty::before {
+  content: "Select a classification to view inventory";
+  display: block;
+  text-align: center;
+  padding: 60px 20px;
+  color: #666;
+  font-style: italic;
+  font-size: 1.1rem;
+  background: #f8f9fa;
+}
+
+/* Estilos para cuando hay datos */
+#inventoryDisplay tbody tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+#inventoryDisplay tbody tr:nth-child(even):hover {
+  background-color: #f0f0f0;
+}
+
+/*.flash-message {
+    padding: 12px 16px;
+    margin: 16px 0;
+    border-radius: 8px;
+    background: #fff3cd;
+    color: #856404;
+    border: 2px solid #ffeaa7;
+    font-weight: 500;
+}
+
+/******* BADGE STYLES para estados o categorías ***************/
+.status-badge {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.status-available {
+  background: linear-gradient(135deg, #1a7f37 0%, #2ecc71 100%);
+  color: white;
+}
+
+.status-pending {
+  background: linear-gradient(135deg, #f39c12 0%, #f1c40f 100%);
+  color: white;
+}
+
+.status-sold {
+  background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+  color: white;
+}
+
+/******* RESPONSIVE STYLES ***************/
+@media only screen and (max-width: 768px) {
+  .classification-container {
+    margin: 20px 0;
+    padding: 20px;
+  }
+  
+  #classificationList {
+    max-width: 100%;
+  }
+  
+  .table-container {
+    margin: 20px 0;
+    border-radius: 12px;
+  }
+  
+  #inventoryDisplay {
+    display: block;
+    overflow-x: auto;
+  }
+  
+  #inventoryDisplay th,
+  #inventoryDisplay td {
+    padding: 12px 10px;
+    font-size: 0.9rem;
+    white-space: nowrap;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .classification-container {
+    padding: 15px;
+  }
+  
+  .classification-container label {
+    font-size: 1rem;
+  }
+  
+  #classificationList {
+    padding: 12px 14px;
+    font-size: 0.95rem;
+  }
+  
+  #inventoryDisplay th,
+  #inventoryDisplay td {
+    padding: 10px 8px;
+    font-size: 0.85rem;
+  }
+}
+
 /* Media queries responsivas */
 @media only screen and (max-width: 700px) {
   #vehicle-display > div {
@@ -644,4 +983,612 @@ input:invalid {
     padding: 14px 0 8px 0;
     border-top-width: 2px;
   }
+}
+
+/******* ADMIN WELCOME & MANAGEMENT STYLES ***************/
+.admin-welcome-container {
+  background: linear-gradient(135deg, #2d2d3d 0%, #364b57 100%);
+  border-radius: 16px;
+  padding: 30px;
+  margin: 25px 0;
+  color: white;
+  box-shadow: 0 8px 25px rgba(45, 45, 61, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.admin-welcome-container::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(26, 127, 55, 0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.admin-welcome-container h2 {
+  color: white;
+  margin: 0 0 8px 0;
+  font-size: 2rem;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.admin-welcome-container h3 {
+  color: #2ecc71;
+  margin: 0 0 20px 0;
+  font-size: 1.4rem;
+  font-weight: 600;
+  border-left: 4px solid #2ecc71;
+  padding-left: 12px;
+}
+
+.manage-inventory {
+  margin: 25px 0 0 0;
+}
+
+.manage-inventory a {
+  display: inline-block;
+  background: linear-gradient(135deg, #2ecc71 0%, #1a7f37 100%);
+  color: white !important;
+  padding: 14px 28px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(26, 127, 55, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.manage-inventory a::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.manage-inventory a:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(26, 127, 55, 0.4);
+  background: linear-gradient(135deg, #1a7f37 0%, #2ecc71 100%);
+}
+
+.manage-inventory a:hover::before {
+  left: 100%;
+}
+
+.manage-inventory a:active {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(26, 127, 55, 0.4);
+}
+
+/******* RESPONSIVE ADMIN STYLES ***************/
+@media only screen and (max-width: 768px) {
+  .admin-welcome-container {
+    padding: 25px 20px;
+    margin: 20px 0;
+    text-align: center;
+  }
+  
+  .admin-welcome-container h2 {
+    font-size: 1.7rem;
+  }
+  
+  .admin-welcome-container h3 {
+    font-size: 1.2rem;
+    border-left: none;
+    border-top: 3px solid #2ecc71;
+    padding-left: 0;
+    padding-top: 8px;
+    display: inline-block;
+  }
+  
+  .manage-inventory a {
+    padding: 12px 24px;
+    font-size: 1rem;
+    width: 100%;
+    max-width: 280px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .admin-welcome-container {
+    padding: 20px 15px;
+  }
+  
+  .admin-welcome-container h2 {
+    font-size: 1.5rem;
+  }
+  
+  .admin-welcome-container h3 {
+    font-size: 1.1rem;
+  }
+  
+  .manage-inventory a {
+    padding: 12px 20px;
+    font-size: 0.95rem;
+  }
+}
+
+/******* ACCOUNT STATUS & MANAGEMENT STYLES ***************/
+.account-status-container {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border-radius: 16px;
+  padding: 25px;
+  margin: 20px 0;
+  border: 2px solid #e0e0e0;
+  box-shadow: 0 6px 20px rgba(54, 75, 87, 0.08);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.account-status-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #2ecc71, #1a7f37, #2ecc71);
+  background-size: 200% 100%;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.account-status-container p {
+  color: #1a7f37;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0 0 20px 0;
+  padding: 8px 16px;
+  background: rgba(26, 127, 55, 0.1);
+  border-radius: 25px;
+  display: inline-block;
+  border: 1px solid rgba(26, 127, 55, 0.2);
+}
+
+.account-actions {
+  margin-top: 15px;
+}
+
+.account-actions a {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #364b57 0%, #2d2d3d 100%);
+  color: white !important;
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(54, 75, 87, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.account-actions a::before {
+  content: '✏️';
+  font-size: 0.9rem;
+}
+
+.account-actions a::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.5s;
+}
+
+.account-actions a:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(54, 75, 87, 0.4);
+  background: linear-gradient(135deg, #2d2d3d 0%, #364b57 100%);
+}
+
+.account-actions a:hover::after {
+  left: 100%;
+}
+
+.account-actions a:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 10px rgba(54, 75, 87, 0.4);
+}
+
+/* Efecto de icono alternativo (si prefieres un icono CSS en lugar del emoji) */
+.account-actions a.edit-account::before {
+  content: '';
+  width: 16px;
+  height: 16px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+/******* RESPONSIVE ACCOUNT STYLES ***************/
+@media only screen and (max-width: 768px) {
+  .account-status-container {
+    padding: 20px;
+    margin: 15px 0;
+  }
+  
+  .account-status-container p {
+    font-size: 1.1rem;
+    padding: 6px 14px;
+  }
+  
+  .account-actions a {
+    padding: 10px 20px;
+    font-size: 0.95rem;
+    width: 100%;
+    max-width: 280px;
+    justify-content: center;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .account-status-container {
+    padding: 18px 15px;
+  }
+  
+  .account-status-container p {
+    font-size: 1rem;
+    margin-bottom: 15px;
+  }
+  
+  .account-actions a {
+    padding: 10px 18px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Versión alternativa más minimalista */
+.account-status-minimal {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  margin: 15px 0;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 2px 8px rgba(54, 75, 87, 0.05);
+}
+
+.account-status-minimal p {
+  color: #1a7f37;
+  font-weight: 500;
+  margin: 0 0 15px 0;
+}
+
+.account-status-minimal a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #364b57;
+  color: white !important;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.account-status-minimal a:hover {
+  background: #2d2d3d;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(54, 75, 87, 0.2);
+}
+
+/******* ERROR MESSAGES STYLES ***************/
+.message.warning {
+  background: linear-gradient(135deg, #fff3cd 0%, #f8f0d9 100%);
+  border: 2px solid #ffeaa7;
+  border-left: 6px solid #f39c12;
+  border-radius: 12px;
+  padding: 20px 25px;
+  margin: 25px 0;
+  list-style: none;
+  box-shadow: 0 4px 12px rgba(243, 156, 18, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.message.warning::before {
+  content: '⚠️';
+  position: absolute;
+  top: 18px;
+  left: 20px;
+  font-size: 1.2rem;
+}
+
+.message.warning li {
+  color: #856404;
+  font-weight: 500;
+  margin-bottom: 8px;
+  padding-left: 30px;
+  position: relative;
+  line-height: 1.4;
+}
+
+.message.warning li:last-child {
+  margin-bottom: 0;
+}
+
+.message.warning li::before {
+  content: '•';
+  color: #f39c12;
+  font-weight: bold;
+  position: absolute;
+  left: 15px;
+}
+
+/******* ACCOUNT UPDATE FORM STYLES ***************/
+.account-update-form {
+  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+  border-radius: 16px;
+  padding: 30px;
+  margin: 25px 0;
+  border: 2px solid #e0e0e0;
+  box-shadow: 0 6px 20px rgba(54, 75, 87, 0.08);
+}
+
+.account-update-form h2 {
+  color: #2d2d3d;
+  margin: 0 0 25px 0;
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-align: center;
+  border-bottom: 3px solid #364b57;
+  padding-bottom: 15px;
+}
+
+.form-group {
+  margin-bottom: 22px;
+  position: relative;
+}
+
+.account-update-form label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #2d2d3d;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.account-update-form input[type="text"],
+.account-update-form input[type="email"] {
+  width: 100%;
+  padding: 14px 16px;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  background: white;
+  color: #2d2d3d;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.account-update-form input[type="text"]:focus,
+.account-update-form input[type="email"]:focus {
+  outline: none;
+  border-color: #364b57;
+  box-shadow: 0 0 0 3px rgba(54, 75, 87, 0.2);
+  background-color: #f8f9fa;
+}
+
+.account-update-form input[type="text"]:hover,
+.account-update-form input[type="email"]:hover {
+  border-color: #364b57;
+}
+
+/* Estilos para campos válidos cuando hay foco */
+.account-update-form input[type="text"]:valid:focus,
+.account-update-form input[type="email"]:valid:focus {
+  border-color: #1a7f37;
+  box-shadow: 0 0 0 3px rgba(26, 127, 55, 0.2);
+}
+
+/* Mejora los estilos de validación existentes */
+.account-update-form input:invalid {
+  background-color: ivory;
+  border: 2px solid #e74c3c;
+  outline: none;
+  border-radius: 10px;
+  box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1);
+}
+
+.account-update-form input:invalid:focus {
+  border-color: #e74c3c;
+  box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.2);
+}
+
+.submit-button {
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(135deg, #2d2d3d 0%, #364b57 100%);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(54, 75, 87, 0.3);
+  margin-top: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+.submit-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.5s;
+}
+
+.submit-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(54, 75, 87, 0.4);
+  background: linear-gradient(135deg, #364b57 0%, #2d2d3d 100%);
+}
+
+.submit-button:hover::before {
+  left: 100%;
+}
+
+.submit-button:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 10px rgba(54, 75, 87, 0.4);
+}
+
+.submit-button:disabled {
+  background: #95a5a6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.submit-button:disabled:hover::before {
+  left: -100%;
+}
+
+/* Estilos para el formulario cuando hay errores */
+.form-with-errors .form-group input {
+  border-color: #e74c3c;
+  background-color: #fdf2f2;
+}
+
+.form-with-errors .form-group label {
+  color: #e74c3c;
+}
+
+/******* RESPONSIVE FORM STYLES ***************/
+@media only screen and (max-width: 768px) {
+  .account-update-form {
+    padding: 25px 20px;
+    margin: 20px 0;
+  }
+  
+  .account-update-form h2 {
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+  }
+  
+  .message.warning {
+    padding: 18px 20px 18px 60px;
+    margin: 20px 0;
+  }
+  
+  .message.warning::before {
+    left: 20px;
+    top: 16px;
+  }
+  
+  .message.warning li {
+    padding-left: 0;
+  }
+  
+  .message.warning li::before {
+    display: none;
+  }
+  
+  .form-group {
+    margin-bottom: 18px;
+  }
+  
+  .submit-button {
+    padding: 14px;
+    font-size: 1rem;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .account-update-form {
+    padding: 20px 15px;
+    margin: 15px 0;
+    border-radius: 12px;
+  }
+  
+  .account-update-form h2 {
+    font-size: 1.4rem;
+    padding-bottom: 12px;
+  }
+  
+  .message.warning {
+    padding: 15px 15px 15px 50px;
+    border-radius: 10px;
+  }
+  
+  .message.warning::before {
+    left: 15px;
+    top: 14px;
+    font-size: 1rem;
+  }
+  
+  .account-update-form input[type="text"],
+  .account-update-form input[type="email"] {
+    padding: 12px 14px;
+    font-size: 0.95rem;
+  }
+  
+  .submit-button {
+    padding: 12px;
+    font-size: 0.95rem;
+  }
+}
+
+/* Animación de entrada para mensajes de error */
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.message.warning {
+  animation: slideInDown 0.4s ease-out;
+}
+
+/* Estilos para éxito (si los agregas después) */
+.message.success {
+  background: linear-gradient(135deg, #d4edda 0%, #e8f5e8 100%);
+  border: 2px solid #c3e6cb;
+  border-left: 6px solid #1a7f37;
+  border-radius: 12px;
+  padding: 20px 25px;
+  margin: 25px 0;
+  list-style: none;
+  box-shadow: 0 4px 12px rgba(26, 127, 55, 0.15);
+  color: #155724;
+  font-weight: 500;
 }

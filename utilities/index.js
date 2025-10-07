@@ -126,26 +126,24 @@ Util.handleErrors = fn => (req, res, next) => Promise.resolve(fn(req, res, next)
 * Middleware to check token validity
 **************************************** */
 Util.checkJWTToken = (req, res, next) => {
-    if (req.cookies.jwt) { //an "if" check to see if the JWT cookie exists.
-        //if the cookie exists, uses the jsonwebtoken "verify" function to check the validity of the token. The function takes three arguments: 1) the token (from the cookie), 2) the secret value stored as an environment variable, and 3) a callback function.
-        jwt.verify(req.cookies.jwt,process.env.ACCESS_TOKEN_SECRET,
-        function (err, accountData) {
-            if (err) {
-                req.flash("Please log in")// token is not valid, a flash message is created.
-                res.clearCookie("jwt")// the cookie is deleted.
-                return res.redirect("/account/login")//"login" route, so the client can "login".
-            }
-            res.locals.accountData = accountData
-            res.locals.loggedin = 1
-            next()
-        })
-        } else {
-        next()
-    }//adds the accountData object to the response.locals object to be forwarded on through the rest of this request - response cycle.
-    //Line 16 - adds "loggedin" flag with a value of "1" (meaning true) to the response.locals object to be forwarded on through the rest of this request - response cycle.
-    //calls the "next()" function directing the Express server to move to the next step in the application's work flow.
+  if (req.cookies.jwt) {
+    jwt.verify(
+      req.cookies.jwt,
+      process.env.ACCESS_TOKEN_SECRET,
+      function (err, accountData) {
+        if (err) {
+          req.flash("notice", "Please log in")
+          res.clearCookie("jwt")
+          return res.redirect("/account/login")
+        }
+      res.locals.accountData = accountData
+      res.locals.loggedin = 1
+      next()
+      })
+  } else {
+    next()
+  }
 }
-
 /* ****************************************
  *  Check Login
  * ************************************ */
@@ -157,5 +155,31 @@ Util.checkLogin = (req, res, next) => {
     return res.redirect("/account/login")
   }
 }
+
+/* ****************************************
+* Middleware to check account type
+**************************************** */
+/* ************************
+ * Middleware para verificar permisos de empleado/admin
+ *************************/
+/* ****************************************
+* Middleware to check account type
+**************************************** */
+Util.checkAccountType = (req, res, next) => {
+  if(!res.locals.accountData)
+ {
+    return res.redirect("/account/login")
+    }
+  if (res.locals.accountData.account_type == "Employee" ||
+      res.locals.accountData.account_type == "Admin") 
+    {
+      next()
+    } 
+    else 
+    {
+      return res.redirect("/account/login")
+    }
+}
+
 
 module.exports = Util
