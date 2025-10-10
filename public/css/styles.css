@@ -477,7 +477,7 @@ input:invalid {
   box-shadow: 0 0 0 2px rgba(54, 75, 87, 0.2);
 }
 
-#registerContainer .formSpread button, #addVehicleBtn {
+#registerContainer .formSpread button, #addVehicleBtn, .addVehicle {
   width: 100%;
   padding: 14px;
   background-color: #2d2d3d;

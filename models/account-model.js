@@ -96,4 +96,13 @@ async function updatePassword(hashedPassword, account_id) {
   }
 }
 
-module.exports = { registerAccount, checkExistingEmail, checkLogin, getAccountByEmail, updateAccount, getUserById, updatePassword }
+async function addFavoriteCar(account_id, car_id){
+    try {
+        const res = await pool.query("INSERT INTO favorite (account_id, inv_id) VALUES ($1, $2) RETURNING *",[account_id, car_id])
+        return res.rows[0]
+    } catch (error) {
+        return error.message
+    }
+}
+
+module.exports = { registerAccount, checkExistingEmail, checkLogin, getAccountByEmail, updateAccount, getUserById, updatePassword, addFavoriteCar }

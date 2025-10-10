@@ -244,3 +244,11 @@ SELECT inv_make, inv_model, classification_name FROM "inventory"
 
 -- SQL step 5.6: Update all records in the inventory table to add "/vehicles" to the middle of the file path in the inv_image and inv_thumbnail columns using a single query. 
 UPDATE inventory SET inv_image=replace(inv_image,'/images','/images/vehicles'), inv_thumbnail=replace(inv_thumbnail, '/images', '/images/vehicles');
+
+CREATE TABLE favorite (
+    favorite_id SERIAL PRIMARY KEY,
+    account_id INTEGER NOT NULL REFERENCES account(account_id),
+    inv_id INTEGER NOT NULL REFERENCES inventory(inv_id),
+    favorite_date TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE(account_id, inv_id) -- Evita duplicados del mismo vehículo para un cliente
+);

@@ -57,6 +57,24 @@ async function addClassification(classification_name) {
   }
 }
 
+async function getFavoriteCarsByAccountId(account_id){
+  try {
+    const data = await pool.query("SELECT i.inv_id, i.inv_make, i.inv_model, i.inv_year, i.inv_price, i.inv_thumbnail, i.classification_id, f.favorite_date FROM favorite f INNER JOIN inventory i ON f.inv_id = i.inv_id WHERE f.account_id = $1 ORDER BY f.favorite_date DESC;", [account_id])
+    return data.rows
+  } catch(error) {
+    console.error("model error: " + error)
+  }
+}
+
+async function removeFavoriteCar(account_id, inv_id){
+  try{
+    const data = await pool.query("DELETE FROM favorite WHERE account_id = $1 AND inv_id = $2;", [account_id, inv_id])
+    return data
+  } catch(error){
+    console.error("model error: " + error)
+  }
+}
+
 /* ***************************
  *  Insert new vehicle
  *  Assignment 4, Task 3
@@ -143,4 +161,4 @@ async function updateInventory(
   }
 }
 
-module.exports = {getClassifications, getInventoryByClassificationId, getAccounts, getInventoryById, addClassification, addInventory, deleteInventory, updateInventory };
+module.exports = {getClassifications, getInventoryByClassificationId, getAccounts, getInventoryById, addClassification, addInventory, deleteInventory, updateInventory, getFavoriteCarsByAccountId, removeFavoriteCar };

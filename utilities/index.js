@@ -8,6 +8,18 @@ require("dotenv").config()
  ************************** */
 Util.getNav = async function (req, res, next) {
     let data = await invModel.getClassifications(1)
+    let accountType = "Guest"; // valor por defecto
+    if (res && res.locals && res.locals.accountData) {
+        accountType = res.locals.accountData.account_type || "Guest";
+    }
+
+    console.log("=== DEBUG getNav ===");
+    console.log("res existe:", !!res);
+    console.log("res.locals existe:", res?.locals);
+    console.log("res.locals.accountData:", res?.locals?.accountData);
+    console.log("accountType final:", accountType);
+    console.log("=== FIN DEBUG ===");
+
     let list = "<ul>"
     list += '<li class="nav_item"><a href="/" title="Home page">Home</a></li>'
     data.rows.forEach((row) => {
@@ -22,6 +34,9 @@ Util.getNav = async function (req, res, next) {
         "</a>"
         list += "</li>"
     })
+    if(accountType === 'Client'){
+        list += '<li class="nav_item"><a href="/inv/favorites" title="Favorite Cars">Favorites</a></li>'
+    }
     list += "</ul>"
     return list
 }
@@ -51,7 +66,8 @@ Util.buildClassificationList = async function (classification_id = null) {
 /* **************************************
 * Build the classification view HTML
 * ************************************ */
-Util.buildClassificationGrid = async function(data){
+Util.buildClassificationGrid = async function(data, accountType){
+    console.log("Account Type:", accountType)
     let grid
     if(data.length > 0){
         grid = '<ul id="inv-display">'
@@ -72,6 +88,49 @@ Util.buildClassificationGrid = async function(data){
         grid += '<span>$' 
         + new Intl.NumberFormat('en-US').format(vehicle.inv_price) + '</span>'
         grid += '</div>'
+        if(accountType === 'Client'){  
+          grid += '<form class="addFavoritesForm" action="/inv/addFavorites" method="post">';
+          grid += '<input type="hidden" name="classification_id" value="' + vehicle.classification_id + '">';
+          grid += '<input type="hidden" name="inv_id" value="' + vehicle.inv_id + '">';
+          grid += '<button type="submit" class="addVehicle" id="addfavoritesvehiclebtn">Add To Favorites</button>';
+          grid += '</form>';
+        }
+        grid += '</li>'
+    })  
+        grid += '</ul>'
+    } else { 
+        grid += '<p class="notice">Sorry, no matching vehicles could be found.</p>'
+    }
+    return grid
+}
+
+Util.buildFavoritesGrid = async function(data){
+    let grid
+    if(data.length > 0){
+        grid = '<ul id="inv-display">'
+        data.forEach(vehicle => { 
+          grid += '<li>'
+          grid +=  '<a href="../../inv/detail/'+ vehicle.inv_id 
+          + '" title="View ' + vehicle.inv_make + ' '+ vehicle.inv_model 
+          + 'details"><img src="' + vehicle.inv_thumbnail 
+          +'" alt="Image of '+ vehicle.inv_make + ' ' + vehicle.inv_model 
+          +' on CSE Motors" /></a>'
+          grid += '<div class="namePrice">'
+          grid += '<hr />'
+          grid += '<h2>'
+          grid += '<a href="../../inv/detail/' + vehicle.inv_id +'" title="View ' 
+          + vehicle.inv_make + ' ' + vehicle.inv_model + ' details">' 
+          + vehicle.inv_make + ' ' + vehicle.inv_model + '</a>'
+          grid += '</h2>'
+          grid += '<span>$' 
+          + new Intl.NumberFormat('en-US').format(vehicle.inv_price) + '</span>'
+          grid += '</div>'
+          grid += '<form class="addFavoritesForm" action="/inv/remove" method="post">';
+          grid += '<input type="hidden" name="classification_id" value="' + vehicle.classification_id + '">';
+          grid += '<input type="hidden" name="inv_id" value="' + vehicle.inv_id + '">';
+          grid += '<button type="submit" class="removeVehicle" id="removefavoritesvehiclebtn">Remove From Favorites</button>';
+          grid += '</form>';
+        
         grid += '</li>'
     })  
         grid += '</ul>'

@@ -145,8 +145,8 @@ async function buildupdateAccountView (req, res, next){
   })
 }
 
-async function buildManagement(Req, res, next){
-  let nav = await utilities.getNav()
+async function buildManagement(req, res, next){
+  let nav = await utilities.getNav(req, res)
   res.render("account/management", {
     title: "Account Management", 
     nav,

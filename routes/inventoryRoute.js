@@ -18,6 +18,12 @@ router.get(
 )
 
 router.get(
+  "/favorites",
+  //utilities.checkAccountType, 
+  utilities.handleErrors(invController.buildFavoritesView)
+)
+
+router.get(
   "/newClassification",
   utilities.checkAccountType, // ← YA TIENE (correcto)
   utilities.handleErrors(invController.newClassificationView)
@@ -79,6 +85,15 @@ router.post(
   utilities.checkAccountType, // ← YA TIENE (correcto)
   utilities.handleErrors(invController.deleteItem)
 )
+
+router.post(
+  "/addFavorites",
+  utilities.handleErrors(invController.addFavoriteCar)
+)
+
+router.post(
+  "/remove",
+  utilities.handleErrors(invController.removeFavoriteCar))
 
 // Ruta de prueba de errores (puede mantenerse pública o protegida según necesites)
 router.get(

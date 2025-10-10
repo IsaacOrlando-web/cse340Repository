@@ -2,7 +2,7 @@ const utilities = require("../utilities/")
 const baseController = {} //Create an object
 
 baseController.buildHome = async function(req, res){
-    const nav = await utilities.getNav()
+    let nav = await utilities.getNav(req, res)
     res.render("index", {title: "Home", nav})
 }
 
